@@ -2,8 +2,6 @@ streamlit
 streamlit-option-menu
 streamlit-folium
 regex
-json
-pickle
 pandas
 geopandas
 numpy
