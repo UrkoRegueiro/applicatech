@@ -9,9 +9,12 @@ from joblib import load
 #################################### Función de carga de modelos ###########################################
 @st.cache_resource
 def load_model():
-    min_model = load('modelos/min_model.pkl')
-    max_model = load('modelos/max_model.pkl')
+    with open("modelos/min_model.pkl", 'rb') as file:
+        min_model = pickle.load(file)
 
+    with open("modelos/max_model.pkl", 'rb') as file:
+        max_model = pickle.load(file)
+   
     lista_modelos = [min_model, max_model]
 
     return lista_modelos

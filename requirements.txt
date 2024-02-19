@@ -14,4 +14,4 @@ unidecode
 pydeck
 python-math
 joypy
-joblib
+scikit-learn
