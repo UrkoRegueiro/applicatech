@@ -1,6 +1,7 @@
 streamlit
+streamlit-option-menu
 streamlit-folium
-re
+regex
 json
 pickle
 pandas
