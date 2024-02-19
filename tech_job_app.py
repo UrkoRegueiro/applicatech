@@ -41,8 +41,7 @@ def tech_app():
         radius=3000,
     )
 
-    width = st.sidebar.slider("plot width", 100, 1000, 10)
-    height = st.sidebar.slider("plot height", 100, 1000, 10)
+
     # Configurar la vista del mapa
     view_state = pdk.ViewState(
         longitude=-4,
