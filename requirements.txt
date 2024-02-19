@@ -12,6 +12,6 @@ plotly
 plotly_express
 unidecode
 pydeck
-math
+python-math
 joypy
 joblib
