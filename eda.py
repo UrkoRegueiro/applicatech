@@ -10,6 +10,7 @@ def eda():
         <style>
         .big-font {
             font-size:20px;
+            color: #FAFAFA;
             
         }
         .sub-font {
@@ -35,7 +36,7 @@ def eda():
     ####################################################  INTRODUCCIÓN ##########################################################################
     st.markdown("<h2 style='text-align: center; font-size: 60px;color: orange; '>Una visión general</h2>", unsafe_allow_html=True)
 
-    st.markdown('<p class="sub-font">¿Te has preguntado cuál es la situación actual de los empleos en el sector tecnológico español?<br></p>'
+    st.markdown('<p class="center-font">¿Te has preguntado cuál es la situación actual de los empleos en el sector tecnológico español?<br></p>'
                 '<p class="big-font">Reconocemos que las carreras en tecnología están entre las mejor remuneradas y con mejor biestar laboral, pero surge la duda sobre qué salario esperar cuando buscamos un empleo, ya sea tras graduarse o por una transición laboral. Aún más desafiante puede ser determinar qué habilidades específicas se requieren para destacar en este sector, y no digamos encontrar en qué empresa pueden encajar nuestros ideales.</p>'                
                 '<p class="big-font">En nuestra búsqueda por despejar estas dudas, hemos recopilado información de los principales portales de empleo, analizándola para ayudarte a entender mejor el mercado tech en España. A continuación, te presentamos nuestros hallazgos para que estés un paso por delante en tu búsqueda de empleo.</p>', unsafe_allow_html=True)
 
@@ -118,13 +119,13 @@ def eda():
 
             titulos.update_traces(marker=dict(cornerradius=5))
 
-            st.plotly_chart(titulos)
+            st.plotly_chart(titulos, use_container_width=True)
 
         with columna_texto_2:
 
             st.header(":orange[_Empleos por categoría_]", divider="orange")
             st.markdown(
-                '<p class="big-font">En el diagrama de la izquierda podemos apreciar la distribución y densidad de empleos por categoría en el sector tecnológico.Es importante señalar que, si bien la representación gráfica no refleja exactamente el tamaño real del mercado laboral de cada especialidad, existe una relación directa: a mayor área que ocupa una categoría en el diagrama, mayor es el número de oportunidades laborales disponibles.<br>'
+                '<p class="big-font">En el diagrama interactivo de la izquierda podemos apreciar la distribución y densidad de empleos por categoría en el sector tecnológico.Es importante señalar que, si bien la representación gráfica no refleja exactamente el tamaño real del mercado laboral de cada especialidad, existe una relación directa: a mayor área que ocupa una categoría en el diagrama, mayor es el número de oportunidades laborales disponibles.<br>'
                 'Por ejemplo, la categoría de "programador", que incluye puestos como "developer" y "software engineer", es especialmente prominente, lo que nos indica una mayor demanda de este perfíl, sugiriendo que es altamente demandado debido a la versatilidad de sus funciones.</p>',
                 unsafe_allow_html=True)
 
@@ -141,7 +142,9 @@ def eda():
             st.header(":orange[_Distribución de salarios Tech_]", divider="orange")
             # Descripción:
             st.markdown(
-                '<p class="big-font">Lorem ipsum dolLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempLorem ipsum dolor sit amet, consectetLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempur adipiscing elit, sed do eiusmod tempLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>',
+                '<p class="big-font">En el histograma de la derecha podemos observar la distribución de los salarios en el sector tecnológico español, donde la media se sitúa en los 35.800€ brutos anuales.<br>'
+                'Del gráfico se distinguen los salarios mínimos en un rango que va de los 18.000€ a los 25.000€, mientras que los máximos van de los 50.000€ en adelante, presentando una distribución más amplia y la posibilidad de acceder a una gama de salarios máximos potenciales a mayor experiencia laboral adquirida.<br>'
+                'Este tipo de gráfico nos ayuda a entender rápidamente la variabilidad de los salarios dentro de un campo específico, pudiendo identificar tanto los niveles de entrada como los salarios más altos en el mercado tech.</p>',
                 unsafe_allow_html=True)
 
         with columna_salario:
@@ -170,7 +173,7 @@ def eda():
 
             grafico_salarios.update_traces(name="Salario mínimo", selector=dict(name="salario_min"))
             grafico_salarios.update_traces(name="Salario máximo", selector=dict(name="salario_max"))
-            st.plotly_chart(grafico_salarios)
+            st.plotly_chart(grafico_salarios, use_container_width=True)
 
         ############################################################################################################
         st.divider()
@@ -181,7 +184,8 @@ def eda():
         with columna_texto_4:
             st.header(":orange[_Demanda de experiencia_]", divider="orange")
             st.markdown(
-                '<p class="big-font">Lorem ipsum dolLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempLorem ipsum dolor sit amet, consectetLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempur adipiscing elit, sed do eiusmod tempLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>',
+                '<p class="big-font">En cuanto a la experiencia laboral demandada, del gráfico extraemos que este mercado demanda a una gran cantidad de trabajadores con experiencia de entre 2 y 3 años, revelando una dificultad de acceso a perfiles junior o recién graduados.<br>'
+                'Por otra parte se observa que el resto de puestos ofertados requieren una experiencia de 4 años o más, habiéndo casos particulares con una demanda de experiencia especifica.</p>',
                 unsafe_allow_html=True)
 
 
@@ -205,24 +209,26 @@ def eda():
                                               plot_bgcolor='rgb(17,17,17)',
                                               font=dict(family="Courier New, monospace",size=42,color="#000000"),
                                               width=650,
-                                              height=500,
+                                              height=450,
                                               margin=dict(l=0, r=0, t=70, b=0),
                                               autosize=True)
 
             grafico_experiencia.update_traces(textfont=dict(color='#FF7300'))
-            st.plotly_chart(grafico_experiencia)
+            st.plotly_chart(grafico_experiencia, use_container_width=True)
 
     ###################################################### APARTADO CONOCIMIENTOS ######################################################
 
     with tab3:
         st.markdown(" ")
-        columna_texto_5, columna_stack = st.columns((1, 3))
+        columna_texto_5, columna_stack = st.columns((1.2, 3))
 
         with columna_texto_5:
             st.header(":orange[_Stack Tecnológico_]", divider="orange")
             # Descripción:
             st.markdown(
-                '<p class="big-font">Lorem ipsum dolLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempLorem ipsum dolor sit amet, consectetLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempur adipiscing elit, sed do eiusmod tempLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>',
+                '<p class="big-font">Sin lugar a dudas observamos en el gráfico que el conocimiento con mayor demanda en este sector es el inglés, ya que gran parte de las empresas tecnológicas operan a nivel internacional.<br>'
+                'Por otra parte le siguen los conocimientos en Microsoft 365 y el leguaje de consultas a bases de datos SQL, dos herramientas muy necesarias en este sector donde los datos son los cimientos.<br>'
+                'Finalmente, dependiendo de la categoría de empleo, tendremos diferente demanda de conocimientos. Por ejemplo, como veremos, en programación se demanda en su mayor parte conocimientos de Java, mientras que en Data Driven se requiere Python.</p>',
                 unsafe_allow_html=True)
 
         with columna_stack:
@@ -255,24 +261,49 @@ def eda():
                                                 paper_bgcolor='rgb(17,17,17)',
                                                 plot_bgcolor='rgb(17,17,17)',
                                                 font=dict(family="Courier New, monospace",size=40,color="#000000"),
-                                                width=1200,
                                                 height=600,
-                                                margin=dict(l=0, r=200, t=0, b=0))
+                                                margin=dict(l=0, r=0, t=0, b=0))
 
 
-            st.plotly_chart(grafico_herramientas)
+            st.plotly_chart(grafico_herramientas, use_container_width=True)
 
         ############################################################################################################
         st.divider()
         ############################################################################################################
 
-        columna_texto_6, columna_stack_salario = st.columns((1, 2))
+        columna_stack_salario, columna_texto_6 = st.columns((2, 1.2))
 
         with columna_texto_6:
             st.header(":orange[_Salario según Stack_]", divider="orange")
             st.markdown(
-                '<p class="big-font">Lorem ipsum dolLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempLorem ipsum dolor sit amet, consectetLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempur adipiscing elit, sed do eiusmod tempLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>',
+                '<p class="big-font">En la gráfica de la izquieda se muestra la distribución del salario medio de cada una de las 20 herramientas más demandadas (sin tener en cuenta el inglés), revelando que Amazon Web Services es la mejor pagada, siendo el salario medio de 42.000€, siguiendole Azure, Scrum y Docker con 39.000€ de media.<br>'
+                'En tabla inferior se exponen los salarios medios de cada una de las 20 herramientas, de mayor a menor:</p>',
                 unsafe_allow_html=True)
+
+            herramientas_salario = df_grafico.groupby("herramienta")["salario_medio"].mean().sort_values(ascending=False).to_frame().reset_index()
+            herramientas_salario["salario_medio"] = herramientas_salario["salario_medio"].apply( lambda x: str(round(int(x), -3)) + " €")
+
+            st.markdown(" ")
+            st.markdown(" ")
+
+            tabla = go.Figure(data=[go.Table(
+                header=dict(values=['Herramienta', 'Salario medio'],
+                            line_color='#66B78D',
+                            fill_color='#66B78D',
+                            align='center'),
+                            cells=dict(values=[herramientas_salario["herramienta"].values, herramientas_salario["salario_medio"].values],
+                            height=30,
+                            line_color='#66B78D',
+                            fill_color='#111111',
+                            align='center'))])
+
+            tabla.update_layout(width=450,
+                                height=148,
+                                font=dict(color="white", size=20),
+                                paper_bgcolor='rgb(17,17,17)',
+                                plot_bgcolor='rgb(17,17,17)',
+                                margin=dict(l=5, r=100, t=0, b=0))
+            st.plotly_chart(tabla, use_container_width=True)
 
         with columna_stack_salario:
 
@@ -288,7 +319,7 @@ def eda():
                 colormap=sns.color_palette("viridis", as_cmap=True),
                 alpha=0.7,
                 linewidth=1,
-                figsize=(11, 5.5),
+                figsize=(11, 7),
                 background="#111111",
                 linecolor="white"
                 )
@@ -307,7 +338,7 @@ def eda():
             plt.xlabel("Salario medio", color="white", size=15)
             plt.tick_params(axis="x", colors="white")
             joy_grafica.set_facecolor("#111111")
-            st.pyplot(joy_grafica)
+            st.pyplot(joy_grafica, use_container_width=True)
 
     ###################################################### APARTADO EMPRESAS ######################################################
 
@@ -344,7 +375,7 @@ def eda():
                                             height=600,
                                             margin=dict(l=0, r=0, t=115, b=0))
 
-            st.plotly_chart(graf_empresas_top)
+            st.plotly_chart(graf_empresas_top, use_container_width=True)
 
         ############################################################################################################
         st.divider()
@@ -391,4 +422,4 @@ def eda():
                                              texttemplate='%{text}',
                                              textfont=dict(color='white', size=30))
 
-            st.plotly_chart(grafico_beneficios)
+            st.plotly_chart(grafico_beneficios, use_container_width=True)
