@@ -10,6 +10,7 @@ def compara():
             <style>
             .big-font {
                 font-size:20px;
+                color: #FAFAFA;
 
             }
             .sub-font {
@@ -26,6 +27,40 @@ def compara():
             </style>
             """, unsafe_allow_html=True)
 
+    st.markdown("""
+        <style>
+
+        	.stTabs [data-baseweb="tab-list"] {
+        		gap: 5px;
+
+            }
+
+        	.stTabs [data-baseweb="tab"] {
+        		height: 60px;
+        		width: auto;
+                white-space: pre-wrap;
+        		background-color: #111111;
+        		border-radius: 3px 3px 0px 0px;
+        		gap: 1px;
+        		padding-top: 10px;
+        		padding-bottom: 1px;
+        		padding-right: 25px;
+            }
+
+            .stTabs [data-baseweb="tab-list"] button [data-testid="stMarkdownContainer"] p {
+        font-size:1.25rem;
+        }
+
+            .st-c2 {
+        background-color: orange;
+        }
+
+        	.stTabs [aria-selected="true"] {
+          		background-color: #111111;
+        	}
+
+        </style>""", unsafe_allow_html=True)
+
                                     ##################### DATOS ####################
 
     _, df, _, df_herramientas, _, df_spider, df_spider_sin_ingles, df_salarios, df_salario_medio, df_stack, _ = load_data()
@@ -34,12 +69,12 @@ def compara():
 
     ####################################################  INTRODUCCIÓN ##########################################################################
 
-    st.markdown("<h2 style='text-align: center; font-size: 60px;color: orange; '>Investiga cada rincón del mercado Tech español</h2>", unsafe_allow_html=True)
+    st.markdown("<h2 style='text-align: center; font-size: 60px;color: orange; '>Investiga al detalle cada rincón</h2>", unsafe_allow_html=True)
 
     st.markdown(
-        '<p class="sub-font">¿Te has preguntado cuál es la situación actual de los empleos en el sector tecnológico español?<br></p>'
-        '<p class="big-font">Reconocemos que las carreras en tecnología están entre las mejor remuneradas y con mejor biestar laboral, pero surge la duda sobre qué salario esperar cuando buscamos un empleo, ya sea tras graduarse o por una transición laboral. Aún más desafiante puede ser determinar qué habilidades específicas se requieren para destacar en este sector, y no digamos encontrar en qué empresa pueden encajar nuestros ideales.</p>'
-        '<p class="big-font">En nuestra búsqueda por despejar estas dudas, hemos recopilado información de los principales portales de empleo, analizándola para ayudarte a entender mejor el mercado tech en España. A continuación, te presentamos nuestros hallazgos para que estés un paso por delante en tu búsqueda de empleo.</p>',
+        '<p class="center-font">¿Tienes dudas más específicas sobre el mercado laboral tech en España?<br></p>'
+        '<p class="big-font">En tu búsqueda de comprender a fondo el mercado laboral tecnológico en España, entendemos que las preguntas pueden volverse más concretas y detalladas. ¿Qué combinación de habilidades tecnológicas se ajustan más a cada sector particular? ¿O quizás estás intrigado por la distribución salarial en distintas comunidades autónomas?</p>'
+        '<p class="big-font">En esta sección, te invitamos a explorar el mercado tech español minuciosamente, dónde podrás personalizar y comparar datos específicos según tus necesidades, a través de herramientas visuales interactivas para que tengas un mejor entendimiento de la situación actual.</p>',
         unsafe_allow_html=True)
 
     ################################################################## TABS ######################################################################
@@ -52,15 +87,18 @@ def compara():
         columna_texto_1, columna_funnel_sun,  = st.columns((1, 2))
 
         with columna_texto_1:
-            st.header(":orange[_Salario y Modalidad_]", divider="orange")
+            st.header(":orange[_Salario y Modalidad_]", divider="orange", help="Gráfico interactivo")
             st.markdown(
-                '<p class="big-font">Lorem ipsum dolLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempLorem ipsum dolor sit amet, consectetLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempur adipiscing elit, sed do eiusmod tempLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>',
+                '<p class="big-font">Conocer la banda salarial en la que se mueven la mayoría de empleos dentro cada uno de los sectores tecnológicos es interesante para ubicar en dónde se encuentran los roles mejor remunerados. Como podemos observar en la gráfica superior, los profesionales enmarcados como ML Engineer tienen un salario notablemente mayor al del resto de sectores, lo que con casi total probabilidad se deba a que la cantidad de datos recabados de ofertas en este área es muy inferior al resto. Por otro lado, si nos fijamos en los empleos que se encuentran en la parte inferior de la pirámide vemos que el salario mínimo medio supera al SMI (15.876€) en un 60%.<br>'
+                '<br>'
+                'Otro de los factores a tener en cuenta es la modalidad, pudiendo ser presencial, híbrida o remota. En la gráfica inferior es claramente visible que la mayoría de empresas de todos los sectores no consideran imprescindible que los trabajadores se desplacen físicamente a sus oficinas, siendo el trabajo remoto la opción mayoritaria. En cuanto a los trabajos que precisan presencialidad, se puede observar que hay mucha diferencia entre el número de ofertas con un formato híbrido en comparación con la presencialidad total, siendo esta última la que aparece en menor medida.</p>',
                 unsafe_allow_html=True)
 
         with columna_funnel_sun:
             ############################################################
             ###################### GRAFICO FUNNEL ######################
-            color_funnel = {"Salario Minimo": "#66B78D", "Salario Maximo": "#FFBD45"}
+            df_salarios["tipo"] = df_salarios["tipo"].apply(lambda x: "Salario Medio Minimo" if x == "Salario Minimo" else "Salario Medio Maximo")
+            color_funnel = {"Salario Medio Minimo": "#66B78D", "Salario Medio Maximo": "#FFBD45"}
 
             salarios_comp = px.funnel(df_salarios,
                                       x='salario',
@@ -72,12 +110,11 @@ def compara():
             salarios_comp.update_layout(paper_bgcolor='rgb(17,17,17)',
                                         plot_bgcolor='rgb(17,17,17)',
                                         yaxis_title="",
-                                        font=dict(family="Courier New, monospace", size=42, color="#000000"),
-                                        legend=dict(x=0.95, y= 0.5, font=dict(size=20)),
-                                        width = 850,
-                                        height = 340,
-                                        margin = dict(l=0, r=0, t=80, b=0))
-            st.plotly_chart(salarios_comp)
+                                        font=dict(family="Courier New, monospace", size=15, color="#000000"),
+                                        legend=dict(x=0.3, y= 1.4, font=dict(size=18)),
+                                        height = 450,
+                                        margin = dict(l=0, r=0, t=180, b=0))
+            st.plotly_chart(salarios_comp, use_container_width=True)
 
             ############################################################
             ###################### GRAFICO PRESENCIALIDAD ##############
@@ -96,19 +133,19 @@ def compara():
             grafico_presencialidad.update_layout(paper_bgcolor='rgb(17,17,17)',
                                                  plot_bgcolor='rgb(17,17,17)',
                                                  font=dict(family="Courier New, monospace", size=18, color="#000000"),
-                                                 width = 550,
-                                                 height = 300,
-                                                 margin = dict(l=240, r=0, t=0, b=0))
+                                                 height = 450,
+                                                 margin = dict(l=120, r=0, t=70, b=0))
 
-            st.plotly_chart(grafico_presencialidad)
+            st.plotly_chart(grafico_presencialidad, use_container_width=True)
 
         ############################################################################################################
         st.divider()
         ############################################################################################################
 
-        st.header(":orange[_Stack Tecnológico_]", divider="orange")
+        st.header(":orange[_Stack Tecnológico_]", divider="orange", help="Gráfico interactivo")
         st.markdown(
-            '<p class="big-font">Lorem ipsum dolLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempLorem ipsum dolor sit amet, consectetLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempur adipiscing elit, sed do eiusmod tempLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>',
+            '<p class="big-font">Dependiendo del sector se utilizarán diferentes herramientas para llevar a cabo tareas específicas, por ello se puede observar como, auque haya herramientas comunes, el stack más utilizado cambiará dependiendo de la categoría. Cabe destacar que el inglés, como conocimiento transversal, es muy demandado en la mayoría de empleos. Finalmente los servicios de computación en la nube como Amazon Web Services o Microsoft Azure también se solicitan de forma recurrente.<br><br>'
+            'En el gráfico interactivo inferior podrás explorar más detenidamente el stack de cada una de las diferentes categorías:</p>',
             unsafe_allow_html=True)
 
         herr_1, herr_2, herr_3 = st.columns((0.1, 1, 4))
@@ -145,7 +182,7 @@ def compara():
                                         font=dict(family="Courier New, monospace", size=40, color="#000000"),
                                         width=1000, height=400, margin=dict(l=0, r=0, t=70, b=0),
                                         autosize=True)
-            herr_3.plotly_chart(grafico_stack)
+            herr_3.plotly_chart(grafico_stack, use_container_width=True)
 
         ################### GRAFICO SPIDER ##########################
         #############################################################
@@ -153,7 +190,7 @@ def compara():
         with columna_texto_2:
             st.header(":orange[_Compara herramientas_]", divider="orange")
             st.markdown(
-                '<p class="big-font">Lorem ipsum dolLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempLorem ipsum dolor sit amet, consectetLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempur adipiscing elit, sed do eiusmod tempLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>',
+                '<p class="big-font">La diversidad de herramientas disponibles en la actualidad es asombrosa, abarcando una amplia gama de funciones y aplicaciones en diversos campos. La complejidad y la constante evolución de la tecnología pueden dificultar la tarea de identificar en qué sectores específicos estas herramientas encuentran su máxima utilidad. Con el objetivo de facilitar este proceso, hemos desarrollado una gráfica interactiva que permite seleccionar entre la extensa lista de herramientas disponibles en nuestra base de datos. Así, se proporciona una visión clara de la demanda en diferentes sectores, ayudando a los profesionales a tomar decisiones informadas sobre qué herramientas son más relevantes para sus necesidades y en qué industrias se solicitan con mayor frecuencia.</p>',
                 unsafe_allow_html=True)
 
         with columna_spider:
@@ -165,7 +202,7 @@ def compara():
 
             eleccion = st.multiselect(label="",
                                        options=df_spider["herramienta"],
-                                       default=None,
+                                       default=["python", "java", "sql"],
                                        max_selections=3)
 
             spider_izq, spider_drch = st.columns((1, 4))
@@ -200,20 +237,20 @@ def compara():
                 ax.fill(angles, values, alpha=0.3, label=label)  # Use viridis colormap for better distinction
 
             plt.legend(bbox_to_anchor=(1.31, 1.05), fontsize= 15, facecolor= "#111111", edgecolor= "white", labelcolor="#FF7300")
-            spider_drch.pyplot(spider)
+            spider_drch.pyplot(spider, use_container_width=True)
 
     ###################################################### APARTADO GEOGRAFIA ######################################################
     with tab2:
         st.header(":orange[_Salarios_]", divider="orange")
         st.markdown(
-            '<p class="big-font">Lorem ipsum dolLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempLorem ipsum dolor sit amet, consectetLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempur adipiscing elit, sed do eiusmod tempLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>',
+            '<p class="big-font">El salario de un trabajador está estrechamente vinculado a la ubicación geográfica en la que desempeña su empleo, reflejando la necesidad de que sea coherente con el costo de vida local. Para abordar esta variable, hemos creado gráficos interactivos que ofrecen una visión detallada de la distribución salarial en las diferentes comunidades autónomas, permitiendo comparaciones directas entre dos regiones simultáneamente. Estos gráficos son herramientas con las que comprender las disparidades salariales y facilitar decisiones informadas tanto a trabajadores en busca de empleo como a empresas que diseñan estrategias salariales adaptadas a las características específicas de cada localidad.</p>',
             unsafe_allow_html=True)
 
 
         ################### GRAFICO SALARIO MEDIO ###################
         #############################################################
         izq, centro, drcha = st.columns((2, 1.5, 2))
-        st.info(":red[Notar:] En algunas comunidades la falta de datos provoca que la distribución de densidad no se ajuste correctamente.")
+        st.info(":red[Nota:] En algunas comunidades la falta de datos provoca que la distribución de densidad no se ajuste correctamente.")
         columna_salario, columna_indicador = st.columns((4, 2))
 
         comunidades = ["", ""]
@@ -221,7 +258,7 @@ def compara():
 
         eleccion_comunidad = centro.multiselect(label="Comunidades Autónomas",
                                               options=df_salario_medio["comunidad"],
-                                              default=["Cataluña", "Comunidad de Madrid"],
+                                              default=["Galicia", "Comunidad de Madrid"],
                                               max_selections=2)
 
 
@@ -238,13 +275,21 @@ def compara():
             max_salario = int(df_salario_comunidad["salario_medio"].max()) + 1000
             min_salario = int(df_salario_comunidad["salario_medio"].min()) - 900
 
+            mi_paleta = sns.color_palette("tab20", 20)
+            comunidad_color_dict = {comunidad: color for comunidad, color in
+                                    zip(df_salario_comunidad['comunidad'].unique(),
+                                        sns.color_palette(mi_paleta, len(df_salario_comunidad['comunidad'].unique())))}
 
             if len(eleccion_comunidad) >= 1:
                 comunidades[0] = eleccion_comunidad[0]
                 valores[0] = df_salario_medio[df_salario_medio["comunidad"] == comunidades[0]]["salario_medio"].values[0]
+                legend_elements = [mpatches.Patch(facecolor=comunidad_color_dict[comunidades[0]], edgecolor='none', label=comunidades[0])]
                 if len(eleccion_comunidad) > 1:
                     comunidades[1] = eleccion_comunidad[1]
                     valores[1] = df_salario_medio[df_salario_medio["comunidad"] == comunidades[1]]["salario_medio"].values[0]
+                    legend_elements = [
+                        mpatches.Patch(facecolor=comunidad_color_dict[comunidad], edgecolor='none', label=comunidad) for
+                        comunidad in comunidades]
 
 
                 mascara = df_salario_comunidad["comunidad"].isin(comunidades)
@@ -254,15 +299,19 @@ def compara():
                             hue='comunidad',
                             fill=True,
                             common_norm=False,
-                            palette="viridis",
+                            palette=comunidad_color_dict,
                             cut= 0,
                             ax=ax)
 
                 ax.set_xlabel('Salario Medio', color='orange', fontsize= 15)
                 plt.xticks([i for i in range(min_salario, max_salario, 5000)], rotation=45)
                 ax.set_ylabel('Densidad', color='orange', fontsize= 15)
-                #ax.set_xlim(left= 0)
-                plt.legend(comunidades, loc='best', fontsize=10, labelcolor="white", facecolor='#111111')
+
+
+                plt.legend(handles=legend_elements, loc='upper right', frameon=False, fontsize=12, labelcolor='white')
+                #plt.legend('comunidad', loc='best', fontsize=10, labelcolor="white", facecolor='#111111')
+
+
                 grafico_comunidades.set_facecolor('#111111')
                 ax.set_facecolor('#111111')
                 ax.spines['bottom'].set_color('white')
@@ -271,7 +320,7 @@ def compara():
                 ax.spines['left'].set_color('white')
                 ax.tick_params(axis='x', colors='white')
                 ax.tick_params(axis='y', colors='#111111')
-                st.pyplot(grafico_comunidades)
+                st.pyplot(grafico_comunidades, use_container_width=True)
 
 
         with columna_indicador:
@@ -298,7 +347,7 @@ def compara():
                                                   margin=dict(l=0, r=0, t=50, b=10),
                                                   width=480, height=440)
 
-            st.plotly_chart(comparacion_comunidades)
+            st.plotly_chart(comparacion_comunidades, use_container_width=True)
 
 
     ###################################################### APARTADO RANK ######################################################
@@ -307,7 +356,7 @@ def compara():
         columna_texto_3, columna_salario_rango = st.columns((1, 2))
 
         with columna_texto_3:
-            st.header(":orange[_Salario_]", divider="orange")
+            st.header(":orange[_Salario_]", divider="orange", help="Gráfico interactivo")
             st.markdown(
                 '<p class="big-font">Lorem ipsum dolLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempLorem ipsum dolor sit amet, consectetLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempur adipiscing elit, sed do eiusmod tempLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>',
                 unsafe_allow_html=True)
@@ -338,7 +387,7 @@ def compara():
                                         paper_bgcolor='rgb(17,17,17)',
                                         plot_bgcolor='rgb(17,17,17)')
 
-            st.plotly_chart(rango_salario)
+            st.plotly_chart(rango_salario, use_container_width=True)
 
         ############################################################################################################
         st.divider()
@@ -347,7 +396,7 @@ def compara():
         columna_modalidad_rango, columna_texto_4  = st.columns((3, 2))
 
         with columna_texto_4:
-            st.header(":orange[_Modalidad_]", divider="orange")
+            st.header(":orange[_Modalidad_]", divider="orange", help="Gráfico interactivo")
             st.markdown(
                 '<p class="big-font">Lorem ipsum dolLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempLorem ipsum dolor sit amet, consectetLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempur adipiscing elit, sed do eiusmod tempLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>',
                 unsafe_allow_html=True)
@@ -378,7 +427,7 @@ def compara():
                               autosize=True
                               )
 
-            st.plotly_chart(presencialidad_rango)
+            st.plotly_chart(presencialidad_rango, use_container_width=True)
 
             #width = st.sidebar.slider("plot width", 100, 1000, 10)
             #height = st.sidebar.slider("plot height", 100, 1000, 10)

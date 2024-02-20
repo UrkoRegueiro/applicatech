@@ -10,6 +10,7 @@ def tech_app():
         .big-font {
             font-size:20px;
             text-align: center;
+            color: #FAFAFA;
         }
         </style>
         """, unsafe_allow_html=True)

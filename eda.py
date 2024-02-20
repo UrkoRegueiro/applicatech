@@ -11,6 +11,7 @@ def eda():
         .big-font {
             font-size:20px;
             color: #FAFAFA;
+            text-align: left;
             
         }
         .sub-font {
@@ -27,6 +28,40 @@ def eda():
         </style>
         """, unsafe_allow_html=True)
 
+    st.markdown("""
+    <style>
+
+    	.stTabs [data-baseweb="tab-list"] {
+    		gap: 5px;
+    		
+        }
+
+    	.stTabs [data-baseweb="tab"] {
+    		height: 60px;
+    		width: auto;
+            white-space: pre-wrap;
+    		background-color: #111111;
+    		border-radius: 3px 3px 0px 0px;
+    		gap: 1px;
+    		padding-top: 10px;
+    		padding-bottom: 1px;
+    		padding-right: 25px;
+        }
+        
+        .stTabs [data-baseweb="tab-list"] button [data-testid="stMarkdownContainer"] p {
+    font-size:1.25rem;
+    }
+    
+        .st-c2 {
+    background-color: orange;
+    }
+
+    	.stTabs [aria-selected="true"] {
+      		background-color: #111111;
+    	}
+
+    </style>""", unsafe_allow_html=True)
+
                             #################### DATOS #####################
 
     _, df, df_comunidades, df_herramientas, provincias_geojson, _, _, _, _, _, df_grafico = load_data()
@@ -37,7 +72,7 @@ def eda():
     st.markdown("<h2 style='text-align: center; font-size: 60px;color: orange; '>Una visión general</h2>", unsafe_allow_html=True)
 
     st.markdown('<p class="center-font">¿Te has preguntado cuál es la situación actual de los empleos en el sector tecnológico español?<br></p>'
-                '<p class="big-font">Reconocemos que las carreras en tecnología están entre las mejor remuneradas y con mejor biestar laboral, pero surge la duda sobre qué salario esperar cuando buscamos un empleo, ya sea tras graduarse o por una transición laboral. Aún más desafiante puede ser determinar qué habilidades específicas se requieren para destacar en este sector, y no digamos encontrar en qué empresa pueden encajar nuestros ideales.</p>'                
+                '<p class="big-font">Reconocemos que las carreras en tecnología están entre las mejor remuneradas y con mejor bienestar laboral, pero surge la duda sobre qué salario esperar cuando buscamos un empleo, ya sea tras graduarse o por una transición laboral. Aún más desafiante puede ser determinar qué habilidades específicas se requieren para destacar en este sector, y no digamos encontrar en qué empresa pueden encajar nuestros ideales.</p>'                
                 '<p class="big-font">En nuestra búsqueda por despejar estas dudas, hemos recopilado información de los principales portales de empleo, analizándola para ayudarte a entender mejor el mercado tech en España. A continuación, te presentamos nuestros hallazgos para que estés un paso por delante en tu búsqueda de empleo.</p>', unsafe_allow_html=True)
 
     ################################################################## TABS ######################################################################
@@ -50,7 +85,7 @@ def eda():
         columna_texto_1, columna_mapa = st.columns((1, 1))
 
         with columna_texto_1:
-            st.header(":orange[_Densidad de empleos Tech en España_]", divider="orange")
+            st.header(":orange[_Densidad de empleos Tech en España_]", divider="orange", help="Gráfico interactivo")
             # Descripción:
             st.markdown(
                 '<p class="big-font">En el mapa de densidad situado a la derecha, se ofrece una visión general del número de empleos por comunidad autónoma. La realidad, aunque previsible, es que la mayor cantidad de ofertas de trabajo se concentran en Madrid y Cataluña. No obstante, es importante destacar que la actividad laboral en el sector tech se extiende más allá de estas áreas metropolitanas ya que, gracias a la flexibilidad del trabajo hídrido y remoto, se pueden desempeñar funciones para una posición desde cualquier lugar, disfrutando de un entorno laboral flexible.</p>',
@@ -123,9 +158,9 @@ def eda():
 
         with columna_texto_2:
 
-            st.header(":orange[_Empleos por categoría_]", divider="orange")
+            st.header(":orange[_Empleos por categoría_]", divider="orange", help="Gráfico interactivo")
             st.markdown(
-                '<p class="big-font">En el diagrama interactivo de la izquierda podemos apreciar la distribución y densidad de empleos por categoría en el sector tecnológico.Es importante señalar que, si bien la representación gráfica no refleja exactamente el tamaño real del mercado laboral de cada especialidad, existe una relación directa: a mayor área que ocupa una categoría en el diagrama, mayor es el número de oportunidades laborales disponibles.<br>'
+                '<p class="big-font">En el diagrama de la izquierda podemos apreciar la distribución y densidad de empleos por categoría en el sector tecnológico.Es importante señalar que, si bien la representación gráfica no refleja exactamente el tamaño real del mercado laboral de cada especialidad, existe una relación directa: a mayor área que ocupa una categoría en el diagrama, mayor es el número de oportunidades laborales disponibles.<br>'
                 'Por ejemplo, la categoría de "programador", que incluye puestos como "developer" y "software engineer", es especialmente prominente, lo que nos indica una mayor demanda de este perfíl, sugiriendo que es altamente demandado debido a la versatilidad de sus funciones.</p>',
                 unsafe_allow_html=True)
 
@@ -139,7 +174,7 @@ def eda():
         columna_texto_3, columna_salario = st.columns((1, 1))
 
         with columna_texto_3:
-            st.header(":orange[_Distribución de salarios Tech_]", divider="orange")
+            st.header(":orange[_Distribución de salarios Tech_]", divider="orange", help="Gráfico interactivo")
             # Descripción:
             st.markdown(
                 '<p class="big-font">En el histograma de la derecha podemos observar la distribución de los salarios en el sector tecnológico español, donde la media se sitúa en los 35.800€ brutos anuales.<br>'
@@ -182,7 +217,7 @@ def eda():
         columna_experiencia, columna_texto_4 = st.columns((1, 1))
 
         with columna_texto_4:
-            st.header(":orange[_Demanda de experiencia_]", divider="orange")
+            st.header(":orange[_Demanda de experiencia_]", divider="orange", help="Gráfico interactivo")
             st.markdown(
                 '<p class="big-font">En cuanto a la experiencia laboral demandada, del gráfico extraemos que este mercado demanda a una gran cantidad de trabajadores con experiencia de entre 2 y 3 años, revelando una dificultad de acceso a perfiles junior o recién graduados.<br>'
                 'Por otra parte se observa que el resto de puestos ofertados requieren una experiencia de 4 años o más, habiéndo casos particulares con una demanda de experiencia especifica.</p>',
@@ -223,7 +258,7 @@ def eda():
         columna_texto_5, columna_stack = st.columns((1.2, 3))
 
         with columna_texto_5:
-            st.header(":orange[_Stack Tecnológico_]", divider="orange")
+            st.header(":orange[_Stack Tecnológico_]", divider="orange", help="Gráfico interactivo")
             # Descripción:
             st.markdown(
                 '<p class="big-font">Sin lugar a dudas observamos en el gráfico que el conocimiento con mayor demanda en este sector es el inglés, ya que gran parte de las empresas tecnológicas operan a nivel internacional.<br>'
@@ -276,8 +311,8 @@ def eda():
         with columna_texto_6:
             st.header(":orange[_Salario según Stack_]", divider="orange")
             st.markdown(
-                '<p class="big-font">En la gráfica de la izquieda se muestra la distribución del salario medio de cada una de las 20 herramientas más demandadas (sin tener en cuenta el inglés), revelando que Amazon Web Services es la mejor pagada, siendo el salario medio de 42.000€, siguiendole Azure, Scrum y Docker con 39.000€ de media.<br>'
-                'En tabla inferior se exponen los salarios medios de cada una de las 20 herramientas, de mayor a menor:</p>',
+                '<p class="big-font">En la gráfica de la izquieda se muestra la distribución del salario medio asociado a cada una de las 20 herramientas más demandadas (sin tener en cuenta el inglés), revelando que Amazon Web Services es una de las herramientas mejor pagadas, siendo el salario medio de 42.000€, siguiendole Azure, Scrum y Docker con 39.000€ de media.<br>'
+                'En la tabla inferior se exponen los salarios medios asociados a cada una de las 20 herramientas, de mayor a menor:</p>',
                 unsafe_allow_html=True)
 
             herramientas_salario = df_grafico.groupby("herramienta")["salario_medio"].mean().sort_values(ascending=False).to_frame().reset_index()
@@ -347,10 +382,10 @@ def eda():
         columna_texto_7, columna_empresas = st.columns((1, 3))
 
         with columna_texto_7:
-            st.header(":orange[_Ofertas publicadas por empresa_]", divider="orange")
+            st.header(":orange[_Ofertas publicadas por empresa_]", divider="orange", help="Gráfico interactivo")
             # Descripción:
             st.markdown(
-                '<p class="big-font">Lorem ipsum dolLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempLorem ipsum dolor sit amet, consectetLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempur adipiscing elit, sed do eiusmod tempLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>',
+                '<p class="big-font">En el gráfico de la derecha, se puede apreciar la cantidad de ofertas publicadas por las principales empresas, notando como la categoría de programación es la que más demandan. Destacan dos grandes consultoras de recursos humanos, Page Personnel y Michael Page, como las que más empleo ofertan. Sin embargo también encontramos empresas más enfocadas en consultoría tecnológica tales como NTT Data, Accenture o Krell Consulting, donde la oferta de puestos en data driven toma más relevancia.</p>',
                 unsafe_allow_html=True)
 
         with columna_empresas:
@@ -384,8 +419,9 @@ def eda():
         columna_beneficios, columna_texto_8 = st.columns((2, 1))
 
         with columna_texto_8:
-            st.header(":orange[_¿Ofrecen beneficios?_]", divider="orange")
-            st.markdown('<p class="big-font">Lorem ipsum dolLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempLorem ipsum dolor sit amet, consectetLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempur adipiscing elit, sed do eiusmod tempLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>',
+            st.header(":orange[_¿Ofrecen beneficios?_]", divider="orange", help="Gráfico interactivo")
+            st.markdown('<p class="big-font">Hemos analizado si las empresas del sector tech proporcionan al menos alguno de los siguientes beneficios: seguro de salud, dental, de vida, cheques guardería, transporte, restaurante o plan de pensiones.<br>'
+                        'Como normal general observamos como las empresas no ofrecen beneficios adicionales en el contrato, siendo solo el 23% las que brindan estos productos.</p>',
                 unsafe_allow_html=True)
 
         with columna_beneficios:

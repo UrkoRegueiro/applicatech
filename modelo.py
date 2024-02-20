@@ -1,5 +1,4 @@
 ################ Funciones #################
-import streamlit
 
 from funciones.funciones_modelo import *
 
@@ -28,7 +27,7 @@ def modelo():
 
     st.markdown('<p class="big-font">Una de las preguntas más frecuentes que podemos hacernos a la hora de aplicar a una oferta laboral es la siguiente:</p>', unsafe_allow_html=True)
     st.markdown('<p class="center-font">¿Cuál es el rango salarial que puedo negociar?</p>', unsafe_allow_html=True)
-    st.markdown('<p class="big-font">Es por ello que ponemos a tu disposición una herramienta que ofrece una estimación del rango salarial bruto anual en base a tus habilidades y preferencias. Esta herramienta está construida sobre dos modelo de machine learning entrenados con nuestra base de datos de empleos en España, más en concreto se trata de dos SVR(Suport Vector Regressor), cada uno entrenado para predecir el salario mínimo y máximo respectivamente.</p>', unsafe_allow_html=True)
+    st.markdown('<p class="big-font">Es por ello que ponemos a tu disposición una herramienta que ofrece una estimación del rango salarial bruto anual en base a tus habilidades y preferencias. Esta herramienta está construida sobre dos modelos de machine learning entrenados con nuestra base de datos de empleos en España, más en concreto se trata de dos SVR(Suport Vector Regression), cada uno entrenado para predecir el salario mínimo y máximo respectivamente.</p>', unsafe_allow_html=True)
     st.markdown('<p class="big-font">Presentados a los protagonistas, pongámoslos a trabajar.</p>', unsafe_allow_html=True)
     st.markdown('<p class="big-font">A continuación deberás elegir las opciones que se presentan y presionar el botón de predicción, obteniendo tu rango salarial estimado.</p>', unsafe_allow_html=True)
 
@@ -37,9 +36,10 @@ def modelo():
     # Cargo los datos, modelos y encoders:
 
     listas = load_listas()
-    lista_modelos = load_model()
     lista_encoders = load_encoders()
     lista_pca = load_pca()
+    lista_modelos = load_model()
+
 
     #######################################
 
@@ -128,18 +128,9 @@ def modelo():
         st.markdown("")
         st.markdown("")
 
-        col_1, col_2, col_3, col_4, col_5 = st.columns(5)
+        col_1, col_2, col_3 = st.columns((1.9,1.3,1.5))
 
-        with col_1:
-            pass
-        with col_2:
-            pass
-        with col_4:
-            pass
-        with col_5:
-            pass
-        with col_3:
-            boton_predecir = st.button("Predecir salario", type="primary")
+        boton_predecir = col_2.button("Predecir salario", type="primary")
 
         # Predicción
 
@@ -150,10 +141,9 @@ def modelo():
             st.markdown("""
                     <style>
                     .resultado {
-                        font-size:25px;
-                        color: #FAFAFA;
+                        font-size:30px;
+                        color: orange;
                         text-align: center;
-                        background-color: #00bde0;
                         padding: 10px;
                         border-radius: 10px;
                     }
@@ -161,7 +151,9 @@ def modelo():
                     """, unsafe_allow_html=True)
             st.markdown(f'<p class="resultado">El rango salarial con estas características es de {round(int(salario_minimo_predicho), -2)} a {round(int(salario_maximo_predicho), -2)} € brutos anuales.</p>', unsafe_allow_html=True)
 
-            st.link_button("Aqui tienes una lista de empleos en ese rango salarial.", "https://www.youtube.com/watch?v=dQw4w9WgXcQ&ab_channel=RickAstley")
+            boton_troll_izq, boton_troll_centro, boton_troll_drch = st.columns((1.25,1.3,1.5))
+
+            boton_troll_centro.link_button("Aqui tienes una lista de empleos en ese rango salarial.", "https://www.youtube.com/watch?v=d0tGBCCE0lc&ab_channel=ItzCrassy")
 
 if __name__ == "__modelo__":
     modelo()
