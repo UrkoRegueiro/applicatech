@@ -1,5 +1,4 @@
 ################ Librerias ################
-import os
 import pandas as pd
 import numpy as np
 import streamlit as st
@@ -19,6 +18,7 @@ import math
 from math import pi
 from plotly.subplots import make_subplots
 import joypy
+import matplotlib.patches as mpatches
 ############################################################################################################
 #################################### Función de carga de datos #############################################
 
