@@ -35,7 +35,7 @@ def tech_app():
     ################ TITULO ########################
     st.markdown("<h1 style='text-align: center;color: orange; font-size: 3em;'>Un viaje por el mercado Tech español</h1>", unsafe_allow_html=True)
 
-    st.image("divider.png")
+    st.image("data/divider.png")
     ################ INTRO #######################
     col_1, col_2, col_3 = st.columns((0.2,1,0.2))
 
