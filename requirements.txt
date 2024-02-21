@@ -15,3 +15,4 @@ pydeck
 python-math
 joypy
 scikit-learn
+opencv-python
