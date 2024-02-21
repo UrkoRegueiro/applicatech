@@ -51,8 +51,8 @@ def eda():
         .stTabs [data-baseweb="tab-list"] button [data-testid="stMarkdownContainer"] p {
     font-size:1.25rem;
     }
-    
-        .st-c2 {
+        
+        .st-cn {
     background-color: orange;
     }
 
@@ -64,7 +64,7 @@ def eda():
 
                             #################### DATOS #####################
 
-    _, df, df_comunidades, df_herramientas, provincias_geojson, _, _, _, _, _, df_grafico = load_data()
+    geo_spain, df, df_comunidades, df_herramientas, provincias_geojson, _, _, _, _, _, df_grafico = load_data()
 
                             ################################################
 
@@ -77,7 +77,7 @@ def eda():
 
     ################################################################## TABS ######################################################################
 
-    tab1, tab2, tab3, tab4 = st.tabs([":orange[Distribución de empleos]"" :world_map:", ":orange[Salarios y Experiencia]"" :money_with_wings:", ":orange[Conocimientos]"" :gear:", ":orange[Empresas]"" :department_store:"])
+    tab1, tab2, tab3, tab4 = st.tabs([":orange[Distribución de empleos]"":globe_with_meridians:", ":orange[Salarios y Experiencia]"":briefcase:", ":orange[Conocimientos]"":gear:", ":orange[Empresas]"":department_store:"])
 
     ###################################################### APARTADO DISTRIBUCION DE EMPLEOS ######################################################
     with tab1:
@@ -97,34 +97,33 @@ def eda():
             st.markdown(" ")
             st.markdown(" ")
             st.markdown(" ")
-            st.markdown(" ")
 
             ################################################################
             ########## Densidad de empleos por comunidad autónoma ##########
-            df_comunidad_suma = df.groupby('comunidad').size().reset_index(name='tot_jobs')
-            df_comunidades = df_comunidades.merge(df_comunidad_suma, on='comunidad', how='left')
-            df_comunidades["comunidad"] = df_comunidades["comunidad"].map(lambda x: re.sub(r'[áéíóúüàèìòùñ]', lambda m: unidecode(m.group()), str(x)))
+            layer = pdk.Layer(
+                "HexagonLayer",
+                geo_spain,
+                get_position=["lng", "lat"],
+                auto_highlight=True,
+                elevation_scale=5000,
+                pickable=True,
+                elevation_range=[0, 1000],
+                extruded=True,
+                coverage=2,
+                radius=3000,
+            )
 
-            st.markdown(" ")
-            mapa_españa = folium.Map(location=[40.223611, -1.979444], zoom_start=5)
-            bins = np.arange(0, 7001, 500)
-            legend_labels = [f"{i}-{i + 499}" for i in bins[:-1]]
-            folium.Choropleth(
-                                geo_data=provincias_geojson,
-                                name="choropleth",
-                                data=df_comunidades,
-                                columns=["comunidad", "tot_jobs"],
-                                key_on="properties.comunidad",
-                                fill_color="RdYlBu_r",
-                                bins=bins,
-                                saturation=0.6,
-                                fill_opacity=0.6,
-                                line_opacity=.1,
-                                legend_name="Número de empleos",
-                                legend_labels=legend_labels).add_to(mapa_españa)
+            # Configurar la vista del mapa
+            view_state = pdk.ViewState(
+                longitude=-1.979444,
+                latitude=40.223611,
+                zoom=1,
+                min_zoom=4,
+                max_zoom=7,
+                pitch=25,
+                bearing=-10, height=420)
 
-            folium.LayerControl().add_to(mapa_españa)
-            folium_static(mapa_españa, width=600, height=410)
+            st.pydeck_chart(pdk.Deck(layers=[layer], initial_view_state=view_state))
 
         ############################################################################################################
         st.divider()

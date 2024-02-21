@@ -51,9 +51,9 @@ def compara():
         font-size:1.25rem;
         }
 
-            .st-c2 {
-        background-color: orange;
-        }
+            .st-cn {
+    background-color: orange;
+    }
 
         	.stTabs [aria-selected="true"] {
           		background-color: #111111;
@@ -79,7 +79,7 @@ def compara():
 
     ################################################################## TABS ######################################################################
 
-    tab1, tab2, tab3 = st.tabs([":orange[Un vistazo al Stack Tecnológico]", ":orange[Salario por comunidad]", ":orange[Rangos]"])
+    tab1, tab2, tab3 = st.tabs([":orange[Un vistazo al Stack Tecnológico]"":open_book:", ":orange[Salario por comunidad]"":heavy_dollar_sign:", ":orange[Rangos]"":abacus:"])
 
     ###################################################### APARTADO STACK TECNOLOGICO ######################################################
     with (tab1):
@@ -358,7 +358,7 @@ def compara():
         with columna_texto_3:
             st.header(":orange[_Salario_]", divider="orange", help="Gráfico interactivo")
             st.markdown(
-                '<p class="big-font">Lorem ipsum dolLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempLorem ipsum dolor sit amet, consectetLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempur adipiscing elit, sed do eiusmod tempLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>',
+                '<p class="big-font">Antes de atender al gráfico de la derecha se hace necesario definir cada uno de los rangos. En primer lugar definimos el perfíl Junior como aquel que cuenta entre 0 y 1 año de experiencia. A este le sigue el perfíl Mid, contando entre 2 y 4 años. Por último se encuentran los rangos con mayor maestría, siendo el Senior el que presenta entre 5 y 7 años y el Lead con más de 8.<br>Teniendo esto en cuenta, observamos como los perfiles junior, como cabe esperar, tienen el menor rango salarial, estando la media en 24.000€ brutos anuales. A medida que aumenta la experiencia notamos como el salario aumenta de forma acorde, llegando a alcanzar para los perfiles Lead una media salarial bruta de 54.000€ anuales.</p>',
                 unsafe_allow_html=True)
 
         with columna_salario_rango:
@@ -398,7 +398,9 @@ def compara():
         with columna_texto_4:
             st.header(":orange[_Modalidad_]", divider="orange", help="Gráfico interactivo")
             st.markdown(
-                '<p class="big-font">Lorem ipsum dolLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempLorem ipsum dolor sit amet, consectetLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempur adipiscing elit, sed do eiusmod tempLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>',
+                '<p class="big-font">El hallazgo más significativo se observa en los perfiles Junior, donde se encuentra que el 23% de los empleos requieren presencialidad en oficina. No es de extrañar si pensamos que son perfiles sin o con poca experiencia, lo que requiere de una mayor supervisión para su desarrollo, siendo esta tarea más sencilla en oficina.<br>'
+                'Por otro lado, apreciamos como la modalidad remota cobra mayor significación a medida que el rango y por tanto la responsabilidad aumentan, siendo los puestos presenciales poco requeridos (entorno al 9%).<br>'
+                'Finalmente se tiene que la modalidad híbrida en los primeros años de experiencia se mantiene sobre el 35% de los empleos, descendiendo gradualmente hasta el 18% en los perfiles Lead.</p>',
                 unsafe_allow_html=True)
 
         with columna_modalidad_rango:
@@ -417,15 +419,17 @@ def compara():
                       go.Bar(x=df_rango_presencialidad.rango, y=df_rango_presencialidad.remoto, name="Remoto", text=df_rango_presencialidad.remoto, marker_color="#2A7271")])
 
             presencialidad_rango.update_layout(xaxis_type='category',
-                              paper_bgcolor='rgb(17,17,17)',
-                              plot_bgcolor='rgb(17,17,17)',
-                              legend=dict(x=0, y=1, font=dict(size=20)),
-                              font=dict(family="Courier New, monospace", size=20, color="#000000"),
-                              width=760,
-                              height=490,
-                              margin=dict(l=0, r=50, t=85, b=0),
-                              autosize=True
-                              )
+                                               yaxis_title="Porcentaje",
+                                               paper_bgcolor='rgb(17,17,17)',
+                                               plot_bgcolor='rgb(17,17,17)',
+                                               legend=dict(x=0, y=1, font=dict(size=20)),
+                                               font=dict(family="Courier New, monospace", size=20, color="#000000"),
+                                               width=760,
+                                               height=490,
+                                               margin=dict(l=0, r=50, t=85, b=0),
+                                               autosize=True)
+
+
 
             st.plotly_chart(presencialidad_rango, use_container_width=True)
 
