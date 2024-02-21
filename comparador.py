@@ -97,7 +97,6 @@ def compara():
         with columna_funnel_sun:
             ############################################################
             ###################### GRAFICO FUNNEL ######################
-            df_salarios["tipo"] = df_salarios["tipo"].apply(lambda x: "Salario Medio Minimo" if x == "Salario Minimo" else "Salario Medio Maximo")
             color_funnel = {"Salario Medio Minimo": "#66B78D", "Salario Medio Maximo": "#FFBD45"}
 
             salarios_comp = px.funnel(df_salarios,
