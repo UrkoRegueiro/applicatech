@@ -336,7 +336,7 @@ def eda():
                                 font=dict(color="#FFFFFF", size=20),
                                 paper_bgcolor='rgb(17,17,17)',
                                 plot_bgcolor='rgb(17,17,17)',
-                                margin=dict(l=0, r=0, t=0, b=0))
+                                margin=dict(l=0, r=10, t=0, b=0))
             st.plotly_chart(tabla, use_container_width=True)
 
         with columna_stack_salario:
