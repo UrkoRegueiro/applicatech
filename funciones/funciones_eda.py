@@ -31,14 +31,11 @@ def load_data():
     df_herramientas = pd.read_csv(ruta_datos + 'data_herramientas.csv')
     df_spider = pd.read_csv(ruta_datos + 'df_spider.csv')
     df_spider_sin_ingles = pd.read_csv(ruta_datos + 'df_spider_sin_ingles.csv')
-    with open(ruta_datos + "provincias_esp_choro.geojson", 'r') as archivo:
-        provincias_geojson = json.load(archivo)
-
     df_salarios = pd.read_csv(ruta_datos + 'salarios_comparacion.csv')
     df_salario_medio = pd.read_csv(ruta_datos + 'salario_medio_comunidades.csv')
     df_stack = pd.read_csv(ruta_datos + 'stack_tecnologico.csv')
     df_grafico = pd.read_csv(ruta_datos + 'df_grafico.csv')
-    return geo_spain, df, df_comunidades, df_herramientas, provincias_geojson, df_spider, df_spider_sin_ingles, df_salarios, df_salario_medio, df_stack, df_grafico
+    return geo_spain, df, df_comunidades, df_herramientas, df_spider, df_spider_sin_ingles, df_salarios, df_salario_medio, df_stack, df_grafico
 
 
 ############################################################################################################
