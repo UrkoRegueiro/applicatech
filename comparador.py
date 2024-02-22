@@ -51,10 +51,6 @@ def compara():
         font-size:1.25rem;
         }
 
-            .st-cn {
-    background-color: orange;
-    }
-
         	.stTabs [aria-selected="true"] {
           		background-color: #111111;
         	}
