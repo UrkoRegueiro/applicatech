@@ -63,7 +63,7 @@ def compara():
 
                                     ##################### DATOS ####################
 
-    _, df, _, df_herramientas, _, df_spider, df_spider_sin_ingles, df_salarios, df_salario_medio, df_stack, _ = load_data()
+    _, df, _, df_herramientas, df_spider, df_spider_sin_ingles, df_salarios, df_salario_medio, df_stack, _ = load_data()
 
                                     ################################################
 
