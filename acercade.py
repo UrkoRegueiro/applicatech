@@ -147,7 +147,7 @@ def info():
         linkedin, github = st.columns((1.2,1))
 
         linkedin.link_button("Linkedin", "https://www.linkedin.com/in/urkoregueiro/")
-        github.link_button("GitHub", "https://github.com/UrkoRegueiro")
+        github.link_button("GitHub", "https://github.com/UrkoRegueiro/IT_Job_Spain_Project")
 
     st.markdown('<p class="patata">HOLA PATTATA</p>', unsafe_allow_html=True)
 
