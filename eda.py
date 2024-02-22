@@ -10,7 +10,7 @@ def eda():
         <style>
         .big-font {
             font-size:20px;
-            color: #FAFAFA;
+            color: #FFFFFF;
             text-align: left;
             
         }
@@ -333,7 +333,7 @@ def eda():
 
             tabla.update_layout(width=450,
                                 height=148,
-                                font=dict(color="white", size=20),
+                                font=dict(color="#FFFFFF", size=20),
                                 paper_bgcolor='rgb(17,17,17)',
                                 plot_bgcolor='rgb(17,17,17)',
                                 margin=dict(l=5, r=100, t=0, b=0))
@@ -355,22 +355,22 @@ def eda():
                 linewidth=1,
                 figsize=(11, 7),
                 background="#111111",
-                linecolor="white"
+                linecolor="#FFFFFF"
                 )
             for a in ax:
                 label = a.get_yticklabels()
-                a.set_yticklabels(label, fontdict={'color': 'white'})
+                a.set_yticklabels(label, fontdict={'color': '#FFFFFF'})
 
 
             # Configuraciones adicionales
-            plt.axvline(x=20000, color="white")
-            plt.axvline(x=30000, color="white")
-            plt.axvline(x=40000, color="white")
-            plt.axvline(x=50000, color="white")
-            plt.axvline(x=60000, color="white")
-            plt.xticks(np.arange(10_000, 100_000, 10_000), color="white")
-            plt.xlabel("Salario medio", color="white", size=15)
-            plt.tick_params(axis="x", colors="white")
+            plt.axvline(x=20000, color="#FFFFFF")
+            plt.axvline(x=30000, color="#FFFFFF")
+            plt.axvline(x=40000, color="#FFFFFF")
+            plt.axvline(x=50000, color="#FFFFFF")
+            plt.axvline(x=60000, color="#FFFFFF")
+            plt.xticks(np.arange(10_000, 100_000, 10_000), color="#FFFFFF")
+            plt.xlabel("Salario medio", color="#FFFFFF", size=15)
+            plt.tick_params(axis="x", colors="#FFFFFF")
             joy_grafica.set_facecolor("#111111")
             st.pyplot(joy_grafica, use_container_width=True)
 
@@ -455,6 +455,6 @@ def eda():
 
             grafico_beneficios.update_traces(text=text,
                                              texttemplate='%{text}',
-                                             textfont=dict(color='white', size=30))
+                                             textfont=dict(color='#FFFFFF', size=30))
 
             st.plotly_chart(grafico_beneficios, use_container_width=True)

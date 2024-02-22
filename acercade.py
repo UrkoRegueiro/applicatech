@@ -6,12 +6,12 @@ def info():
                 <style>
                 .big-font {
                     font-size:20px;
-                    color: #FAFAFA;
+                    color: #FFFFFF;
                 }
                     
                 .patata {
                     font-size:0.8px;
-                    color: #FAFAFA;
+                    color: #FFFFFF;
 
                 }
                 .sub-font {
@@ -87,7 +87,7 @@ def info():
 
     with columna_adrian:
         st.header(":orange[&nbsp;&nbsp;&nbsp;&nbsp;_Adrián Moldes_]")
-        adrian = cv2.imread("data/Adrian.png")
+        adrian = cv2.imread(r"data/Adrian.png")
         adrian = cv2.cvtColor(adrian, cv2.COLOR_BGR2RGB)
         adrian = cv2.resize(adrian, (width, height))
         st.image(adrian)
@@ -103,7 +103,7 @@ def info():
 
     with columna_eduardo:
         st.header(":orange[_Eduardo Velazco_]")
-        eduardo = cv2.imread("data/Eduardo.png")
+        eduardo = cv2.imread(r"data/Eduardo.png")
         eduardo = cv2.cvtColor(eduardo, cv2.COLOR_BGR2RGB)
         eduardo = cv2.resize(eduardo, (width, height))
         st.image(eduardo)
@@ -121,7 +121,7 @@ def info():
     with columna_esteban:
         st.header(":orange[&nbsp;&nbsp;&nbsp;_Esteban Pérez_]")
 
-        esteban = cv2.imread("data/Esteban.png")
+        esteban = cv2.imread(r"data/Esteban.png")
         esteban = cv2.cvtColor(esteban, cv2.COLOR_BGR2RGB)
         esteban = cv2.resize(esteban, (width, height))
         st.image(esteban)
@@ -138,7 +138,7 @@ def info():
     with columna_urko:
         st.header(":orange[&nbsp;&nbsp;&nbsp;_Urko Regueiro_]")
 
-        urko = cv2.imread("data/Urko.png")
+        urko = cv2.imread(r"data/Urko.png")
         urko = cv2.cvtColor(urko, cv2.COLOR_BGR2RGB)
         urko = cv2.resize(urko, (width, height))
         st.image(urko)

@@ -10,7 +10,7 @@ def tech_app():
         .center-font {
             font-size:20px;
             text-align: center;
-            color: #FAFAFA;
+            color: ##FFFFFF;
         }
         </style>
         """, unsafe_allow_html=True)
@@ -19,7 +19,7 @@ def tech_app():
                 <style>
                 .big-font {
                     font-size:17px;
-                    color: #FAFAFA;
+                    color: ##FFFFFF;
                     text-align: left;
 
                 }

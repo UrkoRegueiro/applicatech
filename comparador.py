@@ -10,7 +10,7 @@ def compara():
             <style>
             .big-font {
                 font-size:20px;
-                color: #FAFAFA;
+                color: #FFFFFF;
 
             }
             .sub-font {
@@ -97,6 +97,7 @@ def compara():
         with columna_funnel_sun:
             ############################################################
             ###################### GRAFICO FUNNEL ######################
+            df_salarios["tipo"] = df_salarios["tipo"].apply(lambda x: "Salario Medio Minimo" if x == "Salario Minimo" else "Salario Medio Maximo")
             color_funnel = {"Salario Medio Minimo": "#66B78D", "Salario Medio Maximo": "#FFBD45"}
 
             salarios_comp = px.funnel(df_salarios,
@@ -221,11 +222,11 @@ def compara():
             ax.set_xticks(angles[:-1])
 
             ax.set_rlabel_position(-30)
-            plt.yticks([0, 0.25, 0.5, 0.75, 1], ["0%","25%", "50%", "75%", "100%"], color="white", size=18, va="bottom", ha="right")
-            ax.grid(color="white")
+            plt.yticks([0, 0.25, 0.5, 0.75, 1], ["0%","25%", "50%", "75%", "100%"], color="#FFFFFF", size=18, va="bottom", ha="right")
+            ax.grid(color="#FFFFFF")
             ax.set_facecolor("#111111")
             for spine in ax.spines.values():
-                spine.set_edgecolor('white')
+                spine.set_edgecolor('#FFFFFF')
             plt.ylim(0, 1)
 
             for herramienta in eleccion:
@@ -235,7 +236,7 @@ def compara():
                 ax.plot(angles, values, linewidth=4, linestyle='solid')
                 ax.fill(angles, values, alpha=0.3, label=label)  # Use viridis colormap for better distinction
 
-            plt.legend(bbox_to_anchor=(1.31, 1.05), fontsize= 15, facecolor= "#111111", edgecolor= "white", labelcolor="#FF7300")
+            plt.legend(bbox_to_anchor=(1.31, 1.05), fontsize= 15, facecolor= "#111111", edgecolor= "#FFFFFF", labelcolor="#FF7300")
             spider_drch.pyplot(spider, use_container_width=True)
 
     ###################################################### APARTADO GEOGRAFIA ######################################################
@@ -307,17 +308,17 @@ def compara():
                 ax.set_ylabel('Densidad', color='orange', fontsize= 15)
 
 
-                plt.legend(handles=legend_elements, loc='upper right', frameon=False, fontsize=12, labelcolor='white')
-                #plt.legend('comunidad', loc='best', fontsize=10, labelcolor="white", facecolor='#111111')
+                plt.legend(handles=legend_elements, loc='upper right', frameon=False, fontsize=12, labelcolor='#FFFFFF')
+                #plt.legend('comunidad', loc='best', fontsize=10, labelcolor="#FFFFFF", facecolor='#111111')
 
 
                 grafico_comunidades.set_facecolor('#111111')
                 ax.set_facecolor('#111111')
-                ax.spines['bottom'].set_color('white')
-                ax.spines['top'].set_color('white')
-                ax.spines['right'].set_color('white')
-                ax.spines['left'].set_color('white')
-                ax.tick_params(axis='x', colors='white')
+                ax.spines['bottom'].set_color('#FFFFFF')
+                ax.spines['top'].set_color('#FFFFFF')
+                ax.spines['right'].set_color('#FFFFFF')
+                ax.spines['left'].set_color('#FFFFFF')
+                ax.tick_params(axis='x', colors='#FFFFFF')
                 ax.tick_params(axis='y', colors='#111111')
                 st.pyplot(grafico_comunidades, use_container_width=True)
 
