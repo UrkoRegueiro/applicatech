@@ -64,7 +64,7 @@ def eda():
 
                             #################### DATOS #####################
 
-    geo_spain, df, df_comunidades, df_herramientas, provincias_geojson, _, _, _, _, _, df_grafico = load_data()
+    geo_spain, df, df_comunidades, df_herramientas, _, _, _, _, _, df_grafico = load_data()
 
                             ################################################
 
