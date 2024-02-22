@@ -51,10 +51,6 @@ def eda():
         .stTabs [data-baseweb="tab-list"] button [data-testid="stMarkdownContainer"] p {
     font-size:1.25rem;
     }
-        
-        .st-cn {
-    background-color: orange;
-    }
 
     	.stTabs [aria-selected="true"] {
       		background-color: #111111;
