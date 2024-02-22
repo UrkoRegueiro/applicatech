@@ -51,8 +51,8 @@ def main():
         "menu": {"background": "transparent!important"},
         "container": {"padding": "0!important", "background-color": "#39393D", "border-radius":"20px"},
         "icon": {"color": "orange", "font-size": "25px"},
-        "nav-link": {"font-size": "20px", "text-align": "left", "margin":"0px", "--hover-color": "rgba(110,110,110,1.00)"},
-        "nav-link-selected": {"background-color": "rgba(110,110,110,1.00)"},
+        "nav-link": {"font-size": "20px","color": "white","text-align": "left", "margin":"0px", "--hover-color": "rgba(0,0,0,0.5)"},
+        "nav-link-selected": {"background-color": "rgba(0,0,0,0.5)"},
         "menu-title": {"padding-top": ".5rem !important"}
     })
 
