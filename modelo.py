@@ -151,10 +151,6 @@ def modelo():
                     """, unsafe_allow_html=True)
             st.markdown(f'<p class="resultado">El rango salarial con estas características es de {round(int(salario_minimo_predicho), -2)} a {round(int(salario_maximo_predicho), -2)} € brutos anuales.</p>', unsafe_allow_html=True)
 
-            boton_troll_izq, boton_troll_centro, boton_troll_drch = st.columns((1.25,1.3,1.5))
-
-            boton_troll_centro.link_button("Aqui tienes una lista de empleos en ese rango salarial.", "https://www.youtube.com/watch?v=d0tGBCCE0lc&ab_channel=ItzCrassy")
-
 if __name__ == "__modelo__":
     modelo()
 
